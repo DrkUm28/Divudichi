@@ -1,0 +1,760 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* services */
+.services {
+  padding: 5rem 0;
+}
+.services {
+  background: var(--darkGrey);
+  text-align: center;
+}
+.services-center {
+  width: 90vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 50px;
+}
+.service span {
+  display: inline-block;
+  color: var(--primaryColor);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.services h6 {
+  letter-spacing: var(--mainSpacing);
+}
+.services p {
+  width: 80%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 992px) {
+  .services-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .services p {
+    width: 100%;
+  }
+}
+/*end of services */
+
+/*estas son variables, se utilizan para dar estilo a varios componentes
+sin necesidad de estar poniendo las mismas propiedades una y otra vez*/
+:root {
+  --Main: #b19063;
+  --White: #fff;
+  --offWhite: #f7f7f7;
+  --Black: #222;
+  --Grey: #ececec;
+  --darkGrey: #cfcfcf;
+  --Transition: all 0.3s linear;
+  --Espaciado: 3px;
+  --Sombrita: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --Sombra: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+/* css global */
+body {
+  padding-top: 66px;
+  color: var(--Black);
+  background: var(--White);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.4;
+}
+h1 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--Espaciado);
+  color: var(--Black);
+  background: var(--Main);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--Main);
+  transition: var(--Transition);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--Main);
+}
+.loading {
+  text-transform: capitalize;
+  text-align: center;
+  margin-top: 3rem;
+}
+.error {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 0;
+}
+.empty-search {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 2rem 0;
+  padding: 1rem;
+  letter-spacing: var(--Espaciado);
+}
+/* end of globals */
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  background: var(--offWhite);
+  z-index: 1;
+}
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.nav-icon {
+  font-size: 1.5rem;
+  color: var(--Main);
+}
+.nav-links {
+  height: 0;
+  overflow: hidden;
+  transition: var(--Transition);
+  list-style-type: none;
+}
+.nav-links a {
+  display: block;
+  text-decoration: none;
+  padding: 1rem 0;
+  color: var(--Black);
+  transition: var(--Transition);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: var(--Espaciado);
+}
+.nav-links a:hover {
+  color: var(--Main);
+}
+
+.show-nav {
+  height: 100px;
+}
+@media screen and (min-width: 768px) {
+  .nav-btn {
+    display: none;
+  }
+  .nav-center {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .nav-links {
+    height: auto;
+    display: flex;
+    margin-left: 4rem;
+  }
+  .nav-links a {
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+  }
+}
+/* end navbar */
+
+/* hero */
+/* hero va a ser una salvadota porque va a render un restaurante especifico
+utilizando el mismo componente para todos los restaurantes.
+o por lo menos esa es la idea :)*/ 
+
+.defaultHero, .restaurantHero {
+  min-height : calc(100vh - 66px);
+  background : rgb(231, 218, 202); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurantHero {
+  background-image: var(--Grey); /* aqui eventualmente puede ir una foto de un restaurante*/
+  min-height: 60vh;
+}
+/* end hero */
+
+/* banner de inicio*/
+.banner {
+  display : inline-block;
+  background: rgba(0,0,0,0.5);
+  color: var(--White);
+  padding: 2rem 1rem;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: var(--Espaciado);
+}
+
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.banner div {
+  width: 10rem;
+  height: 5px;
+  background: var(--Main);
+  margin: 1.7rem auto;
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+}
+/*final banner*/
+
+/*titulos a ver*/
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-title h4 {
+  font-size: 2rem;
+  letter-spacing: var(--Espaciado);
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+.section-title div {
+  width: 5rem;
+  height: 5px;
+  margin: 0 auto;
+  background: var(--Main);
+}
+/*fin titulo*/
+
+/*inicio formularios*/
+
+.card{
+  width : 85%;
+  max-width: 600px;
+  background: #f1f1f1;
+  position: relative;
+  top: 55%;
+  left: 50%;
+  
+  transform: translate(-50%, -50%);
+  padding: 30px 40px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 20px #000000b3;
+  font-family: "Montserrat", sans-serif;
+}
+
+.formulario {
+  width: 85%;
+  max-width: 800px;
+  background: var(--offWhite)0;
+  position: center;
+  margin-left: 30px;
+  background: var(--Main);
+  
+}
+
+.form-group{
+  border: 1px solid gray;
+  margin:8px 0;
+  border-radius: 8px;
+  text-align: justify;
+  background: rgb(235, 229, 229);
+}
+
+.form-group input{
+  background: rgb(226, 218, 218);
+  border: none;
+  outline:none;
+  width: 100%;
+  margin-top: 6px;
+
+}
+
+.container{
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.double-card {
+  margin: 20px;
+  width : 85%;
+  max-width: 600px;
+  background: #f1f1f1;
+  position: relative;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 20px #000000b3;
+  font-family: "Montserrat", sans-serif;
+}
+
+.Login-Form{
+  border: none;
+  background: #e0caab;
+  padding-left: 50px;
+  padding-right: 30%;
+}
+
+.Login-field{
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fdfdfd;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 7px;
+  width: 100%;
+  transition: all .1s linear;
+}
+
+.Login-field:focus{
+  box-shadow: rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.Login-Error{
+  color:#fc3e3e
+}
+
+.Login-Btn{
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--Espaciado);
+  color: var(--Black);
+  background: var(--Main);
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 5px;
+  transition: var(--Transition);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 5%;
+}
+
+.btn-login{
+  background: rgb(231, 218, 202);
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--Espaciado);
+  color: var(--Black);
+  padding: 0.6rem 0.9rem;
+  border: 6px solid var(--Main);
+  transition: var(--Transition);
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background: transparent;
+  color: var(--Black);
+}
+/*fin formularios*/
+
+div.background-restaurante{
+  
+  list-style-type: none;
+  margin: 0;
+  border: 1.2px solid black;
+  width: 100%;
+  height: 91vh;
+  display: flex;
+  background: rgb(206, 165, 104);
+}
+
+
+.sliderBar {
+  width: 240px;
+  height: 91vh;
+  border: 1.2px solid black;
+  }
+
+.sliderSubItem{
+    font-size: 0.8rem;
+  }
+
+.integracion {
+display: flex;
+}
+
+.contenedor-de-apertura{
+  position: absolute;
+  border: 3px solid black;
+  width: 77em;
+  height: 9vh;
+  margin-left: 2em;
+  display: flex;
+  background: rgb(192, 192, 192);
+}
+
+.contenedor-de-mesas{
+  list-style-type: none;
+  margin-left: 2em;
+  margin-top: 5.3em;
+  margin-right: 4em;
+  
+  border: 3px solid black;
+  width: auto;
+  height: 77.6vh;
+  display: flex;
+  background: rgb(206, 165, 104);
+}
+
+.table-container{ /*mesas de 3*/
+  /* border: 3px solid black;*/
+  margin-left: 3em;
+  margin-top: 1.5em;
+  margin-bottom: 10em;
+  padding: 0.5em;
+  list-style-type: none;
+}
+
+.long-table-container{ /*mesas de 4*/
+  /*border: 3px solid black;*/
+  margin-left: 3em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  padding: 1.3em;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.mesa{
+  border: 3px solid black;
+  padding-bottom: 2em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  padding-top: 2.5em;
+  margin-top: 6em;
+  margin-bottom: 2em;
+  text-align: absolute;  
+  font-size: 0.7em;
+  background: rgba(0, 0, 0, 0.75); 
+  border-radius: 1.2rem;
+
+}
+
+.long-table{
+  border: 3px solid black;
+  padding-bottom: 3em;
+  padding-left:2em;
+  padding-right: 1.5em;
+  padding-top: 2em;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  font-size: 0.7em;
+  background:rgba(0, 0, 0, 0.76);
+  border-radius: 7rem;
+  
+
+}
+
+.short-table-container{
+  /*border: 3px solid black;*/
+  margin-left: 3em;
+  margin-top: 6em;
+  margin-bottom: 1.2em;
+  padding: 0.5em;
+  list-style-type: none;
+}
+
+
+li.mesa{
+  color:white
+}
+
+li.long-table{
+  color:white
+}
+
+div.background-restaurante-L{
+  list-style-type: none;
+  margin: 0;
+  border: 1.2px solid black;
+  width: 100%;
+  height: 91vh;
+  display: flex;
+  background: rgb(250, 221, 178);
+}
+
+.contenedor-de-mesas-L{
+  list-style-type: none;
+  margin-left: 2em;
+  margin-top: 5.3em;
+  margin-right: 4em;
+  border: 3px solid black;
+  width: auto;
+  height: 77.6vh;
+  display: flex;
+  background: rgb(250, 221, 178);
+}
+
+.long-table-container-L{ /*mesas de 5*/
+  /*border: 3px solid black;*/
+  margin-left: 2em;
+  margin-right: 0.3em;
+  margin-top: 2em;
+  margin-bottom: -0.7em;
+  padding: 1.3em;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.short-table-container-L{
+  /*border: 3px solid black;*/
+  margin-left: 3em;
+  margin-top: 6em;
+  margin-bottom: 1.2em;
+  padding-right: 3em;
+  padding: 0.5em;
+  list-style-type: none;
+}
+
+.short-table-container-L-side{
+  /*border: 3px solid black;*/
+  margin-top: 3em;
+  margin-bottom: 1.2em;
+  /*padding: 0.5em;*/
+  display: flex;
+  list-style-type: none;
+}
+
+.barra-container{
+  border: 3px solid rgb(179, 178, 178);
+  margin-left: 0.3em;
+  margin-top: 5em;
+  margin-bottom: 2em;
+  margin-right: 1em;
+  text-align: center;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  list-style-type: none;
+  border-radius: 2em;
+  background: gray;
+}
+
+.center{
+  /*border: 1px solid black;*/
+  margin-left: 1em;
+  margin-right:1em;
+  list-style-type: none;
+}
+
+/*comienzo mesas notte*/
+.long-table-L{
+  /*border: 3px solid black;*/
+  padding-bottom: 3em;
+  padding-left:2em;
+  padding-right: 1.5em;
+  padding-top: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 0.7em;
+  background:rgba(0, 0, 0, 0.76);
+  border-radius: 7rem;
+}
+
+.short-table-L{
+  /*border: 3px solid black;*/
+  padding-bottom: 2em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 3em;
+  margin-left: 2em;
+  text-align: absolute;  
+  font-size: 0.7em;
+  background: rgba(255, 255, 255, 0.925); 
+  border-radius: 1.2rem;
+
+}
+/*fin mesas notte*/
+
+.short-table-L-side-last{
+  /*border: 1px solid black;*/
+  margin-left: 1em;
+  margin-right:1em;
+  list-style-type: none;
+}
+
+.contenedor-de-mesas-peques{
+  /*border: 1px solid black;*/
+  margin-top: 7.5em;
+  margin-left: 1em;
+  /*argin-bottom: 19em;*/
+  list-style-type: none;
+}
+
+
+li.short-table-L{
+  color:black
+}
+
+li.long-table-L{
+  color:white
+}
+
+.contenedor-forms{
+  position: absolute;
+  margin-left: 2rem;
+  display: flex;
+}
+
+.contenedor-fields {
+  margin-right: 1.4rem;
+  margin-top: -0.9rem;
+}
+.contenedor-botones{
+  margin-top: -0.3rem;
+  margin-right: -1.5rem;
+}
+
+.contenedor-boton-productos{
+  margin-top: -0.3rem;
+  margin-right: 5rem;
+}
+
+.contenedor-lista{
+  display: flex;
+}
+
+.barra-baja-restaurantes-peques{
+  
+  border: 2px solid black;
+  width: 22vh;
+  height: 5vh;
+  text-align: center;
+  background: grey;
+}
+
+.barra-alta-restaurantes-peques{
+  position: absolute;
+  border: 1px solid black;
+  margin-top: 0vh; /*esto de fijo se va a tener que cambiar para que 
+                        se vea bien en la compu de derek*/
+  margin-left:142.2vh;
+  width: 20vh;
+  height: 5vh;
+  text-align: center;
+  background: grey;
+}
+
+.contenedor-barras{
+  
+  position: absolute;
+  border: 1px solid black;
+  margin-top: 63vh; /*esto de fijo se va a tener que cambiar para que 
+                        se vea bien en la compu de derek*/
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-barras-L{
+  
+  /*border: 2px solid black;*/
+  margin-top: -19vh; /*esto de fijo se va a tener que cambiar para que 
+                        se vea bien en la compu de derek*/
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.contenedor-radios{
+  border: 2px solid black;
+  margin-bottom: -4rem;
+  margin-top: 8rem;
+}
+.tabla{
+
+  min-width: 650;
+}
+
